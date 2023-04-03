@@ -1,0 +1,139 @@
+import 'package:flutter/material.dart';
+
+void main(List<String> args) {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.purple,
+        title: const Center(
+          child: Text("Messenger"),
+        ),
+      ),
+      body: Column(
+        children: [
+          buildSearchWidget(),
+          buildListHorizontal(),
+          Expanded(child: buildlListVertical())
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(items: const [
+        BottomNavigationBarItem(icon: Icon(Icons.message), label: "Chats"),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.add_circle_sharp), label: "Story")
+      ]),
+    );
+  }
+
+  buildSearchWidget() {
+    return Container(
+      height: 70,
+      color: Colors.white,
+      child: const Padding(
+        padding: const EdgeInsets.all(14.0),
+        child: TextField(
+          decoration: InputDecoration(
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.purple, width: 2.0)),
+              prefixIcon: Icon(
+                Icons.search,
+                color: Colors.purple,
+              )),
+        ),
+      ),
+    );
+  }
+
+  buildListHorizontal() {
+    return Container(
+        height: 110,
+        child: ListView.builder(
+            itemCount: 20,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return Column(
+                children: [
+                  Container(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(70),
+                      child: Image.asset(
+                        "assets/icons/imMessi.jpg",
+                        height: 70,
+                        width: 70,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    margin: EdgeInsets.all(4),
+                  ),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Expanded(
+                    child: Container(
+                      height: 10,
+                      child: const Text(
+                        "Messi",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ),
+                  )
+                ],
+              );
+            }));
+  }
+
+  buildlListVertical() {
+    return ListView.builder(
+      itemCount: 20,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(50),
+                child: Image.network(
+                  "https://images2.thanhnien.vn/zoom/700_438/Uploaded/gianglao/2022_12_09/messi-5690.jpeg",
+                  width: 50,
+                  height: 50,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text("Messi"),
+                    Text(
+                      "Hôm nay đi đá bóng không?",
+                      maxLines: 1,
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        );
+      },
+    );
+  }
+}

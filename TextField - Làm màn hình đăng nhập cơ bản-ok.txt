@@ -1,0 +1,84 @@
+import 'package:flutter/material.dart';
+
+void main(List<String> args) {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Login"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(30),
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(15),
+              child: TextField(
+                controller: usernameController,
+                decoration: const InputDecoration(
+                  labelText: "Username",
+                  labelStyle: TextStyle(fontSize: 22),
+                  hintText: "Enter Your Name",
+                  hintStyle: TextStyle(fontSize: 18),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: TextField(
+                controller: passwordController,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  labelText: "Password",
+                  labelStyle: TextStyle(fontSize: 22),
+                  hintText: "Enter Your Password",
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: ElevatedButton(
+                style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(Colors.blue),
+                    fixedSize: MaterialStatePropertyAll(Size(350, 50))),
+                child: const Text("Đăng nhập",
+                    style: TextStyle(color: Colors.white, fontSize: 18)),
+                onPressed: () {
+                  setState(() {});
+                },
+              ),
+            ),
+            Column(
+              children: [
+                Text("Tên đăng nhập và mật khẩu là:"),
+                Text("Username: ${usernameController.text}"),
+                Text("Password: ${passwordController.text}")
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
