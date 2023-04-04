@@ -1,0 +1,23 @@
+void main(List<String> args) {
+  List<String> names = ["Peter", "Conan", "Jerry", "Tom", "Kaka"];
+  List<int> heights = [165, 170, 175, 178, 180];
+  print(sortThePeople(names, heights));
+}
+
+List<String> sortThePeople(List<String> names, List<int> heights) {
+  final n = names.length;
+  for (var i = 0; i < n - 1; i++) {
+    for (var j = i + 1; j < n; j++) {
+      if (heights[i] < heights[j]) {
+        final tempHeight = heights[i];
+        heights[i] = heights[j];
+        heights[j] = tempHeight;
+
+        final tempName = names[i];
+        names[i] = names[j];
+        names[j] = tempName;
+      }
+    }
+  }
+  return names;
+}
