@@ -1,0 +1,16 @@
+void main(List<String> args) {
+  List<int> numbers = [20, 10, 30, 60, 50, 80];
+  print(thirdMaximumNumber(numbers));
+}
+
+int thirdMaximumNumber(List<int> nums) {
+// Sắp xếp mảng theo thứ tự giảm dần bằng cách sử dụng phương thức "sort/compareTo" trong kiểu dữ liệu "List"
+  nums.sort((a, b) => b.compareTo(a));
+  if (nums.length < 3) {
+// Trả về phần tử lớn nhất trong mảng nếu trong mảng có ít hơn 3 phần tử
+    return nums[0];
+  } else {
+// Trả về phần tử lớn thứ ba trong mảng nếu trong mảng có từ 3 phần tử trở lên
+    return nums[2];
+  }
+}
