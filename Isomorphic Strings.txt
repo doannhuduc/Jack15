@@ -1,0 +1,27 @@
+void main(List<String> args) {
+  String s = "egg";
+  String t = "add";
+  print(isomorphicStrings(s, t));
+}
+
+bool isomorphicStrings(String s, String t) {
+  if (s.length != t.length) {
+    return false;
+  }
+// Sử dụng kiểu dữ liệu "List" để tạo ra danh sách lưu trữ các ký tự trong 2 chuỗi
+  List<String> sList = [];
+  List<String> tList = [];
+// Duyệt qua từng ký tự trong 2 chuỗi
+
+  for (int i = 0; i < s.length; i++) {
+    String indexS = s[i];
+    String indexT = t[i];
+// Kiểm tra xem ký tự đó đã xuất hiện trong danh sách tương ứng chưa, nếu chưa thì thêm vào danh sách đó
+    if (sList.indexOf(indexS) != tList.indexOf(indexT)) {
+      return false;
+    }
+    sList.add(indexS);
+    tList.add(indexT);
+  }
+  return true;
+}
