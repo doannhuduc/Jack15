@@ -1,0 +1,32 @@
+void main(List<String> args) {
+  String str = "abcdabcde";
+  print(repeatedSubstringPattern(str));
+}
+
+bool repeatedSubstringPattern(String s) {
+// Kiểm tra trong "s" có bao nhiêu ký tự
+  int n = s.length;
+
+// Duyệt qua các chuỗi con của "s"
+  for (int i = 0; i < n; i++) {
+// Khởi tạo 1 biến "subStr" có giá trị là chuỗi con của "s"
+    String subStr = s.substring(0, i);
+// Kiểm tra trong "subStr" có bao nhiêu ký tự
+    int m = subStr.length;
+// Kiểm tra xem "subStr" có thể lặp lại để tạo thành "s" không
+    if (n % m == 0) {
+// Khởi tạo 1 biến "repeated" có giá trị là các ký tự được lặp lại bởi chuỗi con "subStr"
+      String repeated = "";
+      for (int j = 0; j < n; j += m) {
+        if (s.substring(j, j + m) != subStr) {
+          break;
+        }
+        repeated += subStr;
+      }
+      if (s == repeated) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
