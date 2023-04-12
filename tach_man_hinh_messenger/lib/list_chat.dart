@@ -1,0 +1,225 @@
+import 'dart:math';
+import 'package:flutter/material.dart';
+
+class ListChatPage extends StatefulWidget {
+  String? userName;
+  ListChatPage({this.userName});
+  @override
+  State<ListChatPage> createState() => _ListChatPageState();
+}
+
+class _ListChatPageState extends State<ListChatPage> {
+  List<InformationUser> _listUser = [];
+  List<InformationBoxChat> _listBoxChat = [];
+  List<String> images = [
+    "https://kenh14cdn.com/203336854389633024/2021/7/26/photo-1-1627310127010166810424.jpg",
+    "http://media.tinthethao.com.vn/files/news/2013/01/14/950f36d4a89bd7.jpg",
+    "https://www.yonex.co.uk/_assets/images/peter-gade-8(1).jpg",
+    "https://kenh14cdn.com/203336854389633024/2022/11/29/downloaderla-6385801ef362f-16696935024171881615970.jpg",
+    "https://cdnmedia.baotintuc.vn/Upload/G5r0l6AdtRt8AnPUeQGMA/files/2022/12/1812/world-cup/1812-messi.jpg",
+    "https://i.guim.co.uk/img/media/4822960abf3c823d9d43a8d6a3b67eba1418aec5/0_150_4500_2700/master/4500.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=6e417eabb6a4f99af17b931415e40588",
+    "https://i.ytimg.com/vi/t0Q2otsqC4I/maxresdefault.jpg",
+    "https://tintucnuocuc.com/thumb_x600x400/upload/xuanntt/2022/10/14/ca-tuoi-tho-xem-di-xem-lai-tom-va-jerry-nhung-lieu-ban-co-biet-5-su-that-thu-vi-ve-hoat-hinh-huyen-thoai-nay1665748947.jpg",
+    "https://cdn.sforum.vn/sforum/wp-content/uploads/2022/07/2-6.jpg",
+    "https://upload.wikimedia.org/wikipedia/vi/thumb/a/a1/Man_Utd_FC_.svg/800px-Man_Utd_FC_.svg.png",
+    "http://i2.taimienphi.vn/tmp/cf/images/vh/2017/10/1.10/tai-game-de-che-1.jpg",
+    "https://images2.thanhnien.vn/zoom/700_438/Uploaded/gianglao/2022_12_09/messi-5690.jpeg"
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.purple,
+        title: Center(
+          child: InkWell(
+            child: Text("Chào mừng " + (widget.userName ?? "Quang")),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
+      ),
+      body: Column(
+        children: [
+          buildSearchUser(),
+          buildSearchBoxChat(),
+          buildListHorizontal(),
+          Expanded(child: buildlListVertical())
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(items: const [
+        BottomNavigationBarItem(icon: Icon(Icons.message), label: "Chats"),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.add_circle_sharp), label: "Story")
+      ]),
+    );
+  }
+
+  buildSearchUser() {
+    return Container(
+      height: 70,
+      color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.all(14.0),
+        child: TextField(
+          onSubmitted: (value) {
+            var indexImage = Random().nextInt(11);
+            var changeUer =
+                InformationUser(avatar: images[indexImage], userName: value);
+            _listUser.add(changeUer);
+            setState(() {});
+          },
+          decoration: InputDecoration(
+              labelText: "User",
+              labelStyle: TextStyle(fontSize: 20),
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.purple, width: 2.0)),
+              prefixIcon: Icon(
+                Icons.search,
+                color: Colors.purple,
+              )),
+        ),
+      ),
+    );
+  }
+
+  buildSearchBoxChat() {
+    return Container(
+      height: 70,
+      color: Colors.white,
+      child: Padding(
+        padding: EdgeInsets.all(14.0),
+        child: TextField(
+          onSubmitted: (value) {
+            var indexImage = Random().nextInt(11);
+            var changeBoxChat = InformationBoxChat(
+                avatar: images[indexImage],
+                userName: "Messi",
+                contentChat: value);
+            _listBoxChat.add(changeBoxChat);
+            setState(() {});
+          },
+          decoration: const InputDecoration(
+              labelText: "Box Chat",
+              labelStyle: TextStyle(fontSize: 20),
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.purple, width: 2.0)),
+              prefixIcon: Icon(
+                Icons.search,
+                color: Colors.purple,
+              )),
+        ),
+      ),
+    );
+  }
+
+  buildListHorizontal() {
+    return Container(
+        height: 110,
+        child: ListView.builder(
+            itemCount: _listUser.length,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              InformationUser item = _listUser[index];
+
+              return InkWell(
+                onTap: () {
+                  _listUser.removeAt(index);
+                  setState(() {});
+                },
+                child: Container(
+                  width: 80,
+                  child: Column(
+                    children: [
+                      Container(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(70),
+                          child: Image.network(
+                            item.avatar ??
+                                "https://images2.thanhnien.vn/zoom/700_438/Uploaded/gianglao/2022_12_09/messi-5690.jpeg",
+                            height: 70,
+                            width: 70,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        margin: EdgeInsets.all(4),
+                      ),
+                      SizedBox(
+                        height: 4,
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: 10,
+                          child: Text(
+                            item.userName ?? "Messi",
+                            maxLines: 1,
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              );
+            }));
+  }
+
+  buildlListVertical() {
+    return ListView.builder(
+      itemCount: _listBoxChat.length,
+      itemBuilder: (context, index) {
+        InformationBoxChat item = _listBoxChat[index];
+        return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                _listBoxChat.removeAt(index);
+                setState(() {});
+              },
+              child: Row(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: Image.network(
+                      item.avatar ??
+                          "https://images2.thanhnien.vn/zoom/700_438/Uploaded/gianglao/2022_12_09/messi-5690.jpeg",
+                      width: 50,
+                      height: 50,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(item.userName ?? "Messi"),
+                        Text(
+                          item.contentChat ?? "Hôm nay đi đá bóng không?",
+                          maxLines: 1,
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ));
+      },
+    );
+  }
+}
+
+class InformationUser {
+  String? avatar;
+  String? userName;
+  InformationUser({this.avatar, this.userName});
+}
+
+class InformationBoxChat {
+  String? avatar;
+  String? userName;
+  String? contentChat;
+  InformationBoxChat({this.avatar, this.userName, this.contentChat});
+}
