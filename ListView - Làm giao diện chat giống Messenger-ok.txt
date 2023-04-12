@@ -74,8 +74,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   Container(
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(70),
-                      child: Image.asset(
-                        "assets/icons/imMessi.jpg",
+                      child: Image.network(
+                        "https://znews-photo.zingcdn.me/w660/Uploaded/mfnuy/2023_04_05/messi.jpg",
                         height: 70,
                         width: 70,
                         fit: BoxFit.cover,
