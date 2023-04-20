@@ -1,0 +1,4 @@
+// git clone : sao chép đường dẫn từ "http" về 1 folder trên máy tính
+// git add . : thêm tất cả các tập tin mới được tạo ra, các tập tin đã thay đổi và tập tin đã xóa trong thư mục làm việc hiện tại
+// git commit -m "đặt tên bất kì" : đẩy lên bộ nhớ trung gian giữa trang chủ github và thư mục hiện tại
+// git push : đẩy các commit mới nhất từ kho lưu trữ Git lên kho lưu trữ GitHub
