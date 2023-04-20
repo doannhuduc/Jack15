@@ -1,0 +1,56 @@
+// Định nghĩa :
+// Hàm ẩn danh là một hàm được khai báo mà không có bất kỳ định danh được đặt tên nào để tham chiếu đến nó.
+
+// Sử dụng hàm ẩn danh khi :
+// 1. Nếu không cần tên vì hàm chỉ được gọi ở 1 nơi
+// 2. Khi xử lý sự kiện trong Flutter
+// 3. Sử dụng rất phổ biến trong lập trình bất đồng bộ
+
+// Cú pháp :
+// (parameter ...) {
+// statements;};
+
+// Cách sử dụng :
+void main() {
+// gọi hàm định nghĩa
+  var x = tinhTong(4, 6);
+  print("X=$x");
+
+// hàm ẩn danh lambda
+  var y = (var a, var b) {
+    return a + b;
+  }(2, 7);
+  print("Y=$y");
+
+// hàm ẩn danh closure
+  var z = (var a, var b) {
+    return a - b;
+  };
+  print("Z=${z(2, 5)}");
+
+// nếu thân hàm có 1 lệnh duy nhất
+  var w = (var a, var b) => a * b;
+
+  print("W=${w(2, 4)}");
+
+//
+  var values = [1, 2, 3, 4, 5];
+  var newValues = [];
+  var multiply5 = (value) => newValues.add(value * 5);
+  listOperator(values, multiply5);
+  print(newValues);
+}
+
+// định nghĩa 1 hàm tên "tinhTong"
+int tinhTong(var a, var b) {
+  return a + b;
+}
+
+// khai báo hàm có tên "listOperator" với 2 argument là 1 danh sách "List" có kiểu dữ liệu "int"
+// và 1 anonymous function (hay còn được gọi là biến "action" có kiểu dữ liệu là "void Function(int)")
+
+void listOperator(List<int> list, void Function(int) action) {
+  for (var item in list) {
+    action(item);
+  }
+}
