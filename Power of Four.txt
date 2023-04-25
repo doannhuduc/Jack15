@@ -1,0 +1,22 @@
+void main(List<String> args) {
+  print(isPowerOfFour(32));
+}
+
+bool isPowerOfFour(int n) {
+// Nếu n không là số nguyên dương, trả về false
+
+  if (n <= 0) {
+    return false;
+
+// Nếu n = 1, trả về true
+  } else if (n == 1) {
+    return true;
+
+// Nếu n > 1 và n không chia hết cho 4, trả về false
+  } else if (n > 1 && n % 4 != 0) {
+    return false;
+  }
+// Hàm đệ quy với biến "result" có giá trị là thương của phép chia (n /4)
+  int result = (n ~/ 4);
+  return isPowerOfFour(result);
+}
