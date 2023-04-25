@@ -1,0 +1,21 @@
+void main(List<String> args) {
+  int n = 1000;
+  print(countMatches(n));
+}
+
+int countMatches(int n) {
+  if (n == 1) {
+// Nếu chỉ có một đội, không cần chơi trận nào
+
+    return 0;
+  }
+  if (n % 2 == 0) {
+// Số lượng đội chẵn
+
+    return n ~/ 2 + countMatches(n ~/ 2);
+  } else {
+// Số lượng đội lẻ
+
+    return (n - 1) ~/ 2 + countMatches((n - 1) ~/ 2 + 1);
+  }
+}
