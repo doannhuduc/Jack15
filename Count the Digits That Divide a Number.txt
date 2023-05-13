@@ -1,0 +1,26 @@
+
+
+void main(List<String> args) {
+  int num = 123658;
+  print(countDigits(num));
+}
+
+int countDigits(int num) {
+// tạo biến "count" có kiểu dữ liệu int để đếm số chữ số trong "num" chia hết cho "num"
+  int count = 0;
+
+// chuyển số nguyên có kiểu dữ liệu int được cho ở đầu vào sang kiểu dữ liệu String
+  String numString = num.toString();
+
+// sử dụng vòng lặp for để duyệt qua từng phần tử trong "numString"
+
+  for (int i = 0; i < numString.length; i++) {
+// lấy giá trị số nguyên của từng phần tử trong biến "numString"
+
+    int digits = int.parse(numString[i]);
+    if (num % digits == 0) {
+      count++;
+    }
+  }
+  return count;
+}

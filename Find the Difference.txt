@@ -1,0 +1,31 @@
+
+void main(List<String> args) {
+String s = "abcdegml";
+  String t = "ackbdgelm";
+  print(findTheDifference(s, t));
+}
+
+String findTheDifference(String s, String t) {
+  Map<String, int> count = {};
+
+// Đếm số lượng xuất hiện của mỗi ký tự trong chuỗi s
+
+  for (int i = 0; i < s.length; i++) {
+    String char = s[i];
+    count[char] = (count[char] ?? 0) + 1;
+  }
+
+// Trừ số lượng xuất hiện của mỗi ký tự trong chuỗi t
+
+  for (int i = 0; i < t.length; i++) {
+    String char = t[i];
+    count[char] = (count[char] ?? 0) - 1;
+    if (count[char] == -1) {
+      return char;
+    }
+  }
+
+// Trường hợp không có chữ cái bị thiếu, trả về chuỗi rỗng
+
+  return '';
+}

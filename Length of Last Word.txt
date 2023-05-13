@@ -1,0 +1,20 @@
+void main(List<String> args) {
+String a = "nice to meet you";
+  print(lengthOflastWord(a));
+}
+
+int lengthOflastWord(String s) {
+// xóa khoảng trắng ở đầu và cuối chuỗi s nếu có
+
+  String newS = s.trim();
+
+// tạo một danh sách "listNewS" để chứa các phần tử trong chuỗi newS được tách ra bằng khoảng trắng
+
+  List<String> listNewS = newS.split(" ");
+
+// Trả về độ dài của phần tử cuối cùng trong danh sách "listNewS"
+
+  int lengthLastWord = listNewS[listNewS.length - 1].length;
+
+  return lengthLastWord;
+}
