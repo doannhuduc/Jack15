@@ -1,0 +1,91 @@
+import 'dart:developer';
+void main(List<String> args) {
+  Flutter classFlutter =
+      Flutter(name: 'Flutter', studentNum: 11, students: ['A', 'B']);
+  Android classAndroid = Android(
+      name: 'Android',
+      studentNum: 12,
+      students: ['B','C','D']);
+  IOS classIOS = IOS(
+      name: 'IOS',
+      studentNum: 13,
+      students: ['D','E','F']);
+  Web classWeb =
+      Web(name: 'Web', studentNum: 14, students: ['F']);
+  classFlutter.getClass();
+  classAndroid.getClass();
+  classIOS.getClass();
+  classWeb.getClass();
+}
+
+class Student {
+  String name = '';
+  Student({required this.name});
+
+  void studentInfo() {
+    log('student name: $name');
+  }
+}
+
+class ClassRoom {
+  String className = '';
+  int studentNum = 1;
+  List<String> students = [];
+
+  ClassRoom(
+      {required this.className,
+      required this.studentNum,
+      required this.students});
+  void getClass() {
+    log('class name: $className, number of student: $studentNum');
+    students.forEach((element) {
+      Student student = Student(name: element);
+      student.studentInfo();
+    });
+  }
+}
+
+class Flutter extends ClassRoom
+    with BuildAndroid, BuildIOS, BuildWeb, BuildDesktopApp {
+  Flutter({required name, required studentNum, required students})
+      : super(className: name, studentNum: studentNum, students: students);
+}
+
+class Android extends ClassRoom with BuildAndroid {
+  Android({required name, required studentNum, required students})
+      : super(className: name, studentNum: studentNum, students: students);
+}
+
+class IOS extends ClassRoom with BuildIOS {
+  IOS({required name, required studentNum, required students})
+      : super(className: name, studentNum: studentNum, students: students);
+}
+
+class Web extends ClassRoom with BuildWeb {
+  Web({required name, required studentNum, required students})
+      : super(className: name, studentNum: studentNum, students: students);
+}
+
+mixin BuildAndroid {
+  void buildAndroid() {
+    log('buildAndroid');
+  }
+}
+
+mixin BuildIOS {
+  void buildIOS() {
+    log('buildIOS');
+  }
+}
+
+mixin BuildWeb {
+  void buildWeb() {
+    log('buildWeb');
+  }
+}
+
+mixin BuildDesktopApp {
+  void buildDesktopApp() {
+    log('buildDesktopApp');
+  }
+}
