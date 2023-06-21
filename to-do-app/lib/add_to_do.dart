@@ -16,7 +16,7 @@ class _AddToDoState extends State<AddToDo> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 500,
+      height: 300,
       child: SingleChildScrollView(
         child: Column(
           children: [

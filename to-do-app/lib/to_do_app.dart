@@ -134,7 +134,7 @@ class _ToDoAppState extends State<ToDoApp> {
             ],
           ),
 
-          // List View "Incomplete"
+          // List View "Incomplete" ................................................................
           ListView.builder(
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
@@ -152,7 +152,8 @@ class _ToDoAppState extends State<ToDoApp> {
                       Transform.scale(
                         scale: 1.2,
                         child: Checkbox(
-                          value: incomplete.isChecked,
+                          value: incomplete
+                              .isChecked, ///////////////////////////////////////////////////////////////////////
                           onChanged: (value) {
                             if (value == true) {
                               _listIncomplete.remove(incomplete);
@@ -237,7 +238,7 @@ class _ToDoAppState extends State<ToDoApp> {
                       color: Colors.black54),
                 ),
               ),
-              // Listview Complete
+              // Listview Complete ........................................................................
               ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
