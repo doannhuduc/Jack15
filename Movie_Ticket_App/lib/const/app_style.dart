@@ -60,4 +60,13 @@ class AppStyle {
 
   // static TextStyle t14B = TextStyle(
   //     fontSize: 24, fontWeight: FontWeight.w800, fontStyle: FontStyle.normal);
+
+  static TextStyle t12R =
+      const TextStyle(fontSize: 12, fontWeight: FontWeight.w400);
+
+  static TextStyle t12M =
+      const TextStyle(fontSize: 12, fontWeight: FontWeight.w600);
+
+  static TextStyle t12B =
+      const TextStyle(fontSize: 12, fontWeight: FontWeight.w800);
 }
